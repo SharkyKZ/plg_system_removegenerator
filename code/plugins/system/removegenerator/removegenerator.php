@@ -39,7 +39,7 @@ class PlgSystemRemoveGenerator extends CMSPlugin
 	 * @param   \Joomla\Event\DispatcherInterface  $subject  The object to observe.
 	 * @param   array                              $config   An optional associative array of configuration settings.
 	 *
-	 * @return void
+	 * @return  void
 	 *
 	 * @since   1.0.0
 	 */
@@ -53,7 +53,7 @@ class PlgSystemRemoveGenerator extends CMSPlugin
 	/**
 	 * Removes generator tag from HTML pages.
 	 *
-	 * @return void
+	 * @return  void
 	 *
 	 * @since   1.0.0
 	 */
@@ -77,7 +77,7 @@ class PlgSystemRemoveGenerator extends CMSPlugin
 	/**
 	 * Removes generator tag from feed pages.
 	 *
-	 * @return void
+	 * @return  void
 	 *
 	 * @since   1.0.0
 	 */
