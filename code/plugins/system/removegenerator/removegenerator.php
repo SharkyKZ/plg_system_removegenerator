@@ -33,7 +33,17 @@ class PlgSystemRemoveGenerator extends CMSPlugin
 	 */
 	protected $appCheck;
 
-	public function __construct(&$subject, $config)
+	/**
+	 * Class constructor.
+	 *
+	 * @param   \Joomla\Event\DispatcherInterface  $subject  The object to observe.
+	 * @param   array                              $config   An optional associative array of configuration settings.
+	 *
+	 * @return void
+	 *
+	 * @since   1.0.0
+	 */
+	public function __construct(&$subject, array $config = [])
 	{
 		parent::__construct($subject, $config);
 
@@ -42,6 +52,8 @@ class PlgSystemRemoveGenerator extends CMSPlugin
 
 	/**
 	 * Removes generator tag from HTML pages.
+	 *
+	 * @return void
 	 *
 	 * @since   1.0.0
 	 */
@@ -64,6 +76,8 @@ class PlgSystemRemoveGenerator extends CMSPlugin
 
 	/**
 	 * Removes generator tag from feed pages.
+	 *
+	 * @return void
 	 *
 	 * @since   1.0.0
 	 */
