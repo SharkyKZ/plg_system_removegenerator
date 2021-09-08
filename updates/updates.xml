@@ -22,7 +22,7 @@
 		<type>plugin</type>
 		<folder>system</folder>
 		<client>site</client>
-		<changelogurl>http://localhost/testing/updates/changelog.xml</changelogurl>
+		<changelogurl>https://raw.githubusercontent.com/SharkyKZ/plg_system_removegenerator/master/updates/changelog.xml</changelogurl>
 		<version>1.1.0</version>
 		<infourl title="System - Remove Generator">https://github.com/SharkyKZ/plg_system_removegenerator/releases/tag/1.1.0</infourl>
 		<downloads>
