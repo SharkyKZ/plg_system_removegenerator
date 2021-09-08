@@ -14,6 +14,26 @@
 		<language tag="en-GB">language/en-GB/en-GB.plg_system_removegenerator.ini</language>
 		<language tag="en-GB">language/en-GB/en-GB.plg_system_removegenerator.sys.ini</language>
 	</languages>
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+				<field
+					name="removeHeader"
+					type="radio"
+					label="PLG_SYSTEM_REMOVEGENERATOR_CONFIG_REMOVE_HEADER_LABEL"
+					description="PLG_SYSTEM_REMOVEGENERATOR_CONFIG_REMOVE_HEADER_DESCRIPTION"
+					default="1"
+					filter="uint"
+					validate="options"
+					required="true"
+					layout="joomla.form.field.radio.switcher"
+					>
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
+			</fieldset>
+		</fields>
+	</config>
 	<updateservers>
 		<server type="extension" name="System - Remove Generator">https://raw.githubusercontent.com/SharkyKZ/plg_system_removegenerator/master/updates/updates.xml</server>
 	</updateservers>

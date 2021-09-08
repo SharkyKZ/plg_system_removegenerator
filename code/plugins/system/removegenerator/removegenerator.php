@@ -103,4 +103,38 @@ class PlgSystemRemoveGenerator extends CMSPlugin
 
 		$this->app->setBody($body);
 	}
+
+	/**
+	 * Removes X-Content-Encoded-By header.
+	 *
+	 * @return  void
+	 *
+	 * @since   1.1.0
+	 */
+	public function onAfterCompress(): void
+	{
+		if (!$this->appCheck)
+		{
+			return;
+		}
+
+		if (!$this->params->get('removeHeader', true))
+		{
+			return;
+		}
+
+		$headers = $this->app->getHeaders();
+
+		$this->app->clearHeaders();
+
+		foreach ($headers as $header)
+		{
+			if (strtolower($header['name']) === 'x-content-encoded-by')
+			{
+				continue;
+			}
+
+			$this->app->setHeader($header['name'], $header['value']);
+		}
+	}
 }
