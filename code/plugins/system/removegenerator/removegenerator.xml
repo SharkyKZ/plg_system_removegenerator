@@ -34,6 +34,7 @@
 			</fieldset>
 		</fields>
 	</config>
+	<changelogurl>https://raw.githubusercontent.com/SharkyKZ/plg_system_removegenerator/master/updates/changelog.xml</changelogurl>
 	<updateservers>
 		<server type="extension" name="System - Remove Generator">https://raw.githubusercontent.com/SharkyKZ/plg_system_removegenerator/master/updates/updates.xml</server>
 	</updateservers>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<changelogs>
+	<changelog>
+		<element>removegenerator</element>
+		<type>plugin</type>
+		<version>1.0.0</version>
+		<note>
+			<item>Initial release</item>
+		</note>
+	</changelog>
+	<changelog>
+		<element>removegenerator</element>
+		<type>plugin</type>
+		<version>1.1.0</version>
+		<addition>
+			<item>Added an option to remove "X-Content-Encoded-By" header when GZip compression is enabled</item>
+		</addition>
+	</changelog>
+</changelogs>
