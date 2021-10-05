@@ -43,7 +43,7 @@ class PlgSystemRemoveGenerator extends CMSPlugin
 	 *
 	 * @since   1.0.0
 	 */
-	public function __construct(&$subject, array $config = [])
+	public function __construct(&$subject, array $config = array())
 	{
 		parent::__construct($subject, $config);
 
@@ -57,7 +57,7 @@ class PlgSystemRemoveGenerator extends CMSPlugin
 	 *
 	 * @since   1.0.0
 	 */
-	public function onBeforeRender(): void
+	public function onBeforeRender()
 	{
 		if (!$this->appCheck)
 		{
@@ -81,7 +81,7 @@ class PlgSystemRemoveGenerator extends CMSPlugin
 	 *
 	 * @since   1.0.0
 	 */
-	public function onAfterRender(): void
+	public function onAfterRender()
 	{
 		if (!$this->appCheck)
 		{
@@ -95,10 +95,10 @@ class PlgSystemRemoveGenerator extends CMSPlugin
 			return;
 		}
 
-		$patterns = [
+		$patterns = array(
 			'/<generator.*?<\/generator>\n/',
 			'/<!-- generator=".*?" -->\n/',
-		];
+		);
 		$body = preg_replace($patterns, '', $this->app->getBody());
 
 		$this->app->setBody($body);
@@ -111,7 +111,7 @@ class PlgSystemRemoveGenerator extends CMSPlugin
 	 *
 	 * @since   1.1.0
 	 */
-	public function onAfterCompress(): void
+	public function onAfterCompress()
 	{
 		if (!$this->appCheck)
 		{
