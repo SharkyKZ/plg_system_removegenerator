@@ -21,7 +21,7 @@
 		<type>plugin</type>
 		<version>1.2.0</version>
 		<fix>
-			<item>Fixed configuration field layout on Joomla &lt;3.10</item>
+			<item><![CDATA[Fixed configuration field layout on Joomla &lt;3.10]]></item>
 		</fix>
 		<change>
 			<item>Reduced PHP requirement from 7.1 to 5.3.10</item>
