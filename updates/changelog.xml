@@ -11,9 +11,23 @@
 	<changelog>
 		<element>removegenerator</element>
 		<type>plugin</type>
-		<version>1.1.0</version>
+		<version>1.2.0</version>
 		<addition>
 			<item>Added an option to remove "X-Content-Encoded-By" header when GZip compression is enabled</item>
+		</addition>
+	</changelog>
+	<changelog>
+		<element>removegenerator</element>
+		<type>plugin</type>
+		<version>1.2.0</version>
+		<fix>
+			<item>Fixed configuration field layout on Joomla &lt;3.10</item>
+		</fix>
+		<change>
+			<item>Reduced PHP requirement from 7.1 to 5.3.10</item>
+		</change>
+		<addition>
+			<item>Added install script with PHP and Joomla! version checks</item>
 		</addition>
 	</changelog>
 </changelogs>
