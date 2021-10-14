@@ -30,4 +30,12 @@
 			<item>Added install script with PHP and Joomla! version checks</item>
 		</addition>
 	</changelog>
+	<changelog>
+		<element>removegenerator</element>
+		<type>plugin</type>
+		<version>1.2.1</version>
+		<fix>
+			<item>Fixed uninstallation on Joomla! 4.0+ and unsupported PHP versions</item>
+		</fix>
+	</changelog>
 </changelogs>
