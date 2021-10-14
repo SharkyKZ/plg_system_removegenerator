@@ -49,7 +49,7 @@ final class PlgSystemRemoveGeneratorInstallerScript
 	/**
 	 * Function called before extension installation/update/removal procedure commences.
 	 *
-	 * @param   string                                 $type    The type of change (install, update or discover_install, not uninstall).
+	 * @param   string                                 $type    The type of change (install, update, discover_install or uninstall).
 	 * @param   Joomla\CMS\Installer\InstallerAdapter  $parent  The class calling this method.
 	 *
 	 * @return  bool  Returns true if installation can proceed.
@@ -58,6 +58,11 @@ final class PlgSystemRemoveGeneratorInstallerScript
 	 */
 	public function preflight($type, $parent)
 	{
+		if ($type === 'uninstall')
+		{
+			return true;
+		}
+
 		if (version_compare(JVERSION, $this->joomlaMinimum, '<'))
 		{
 			return false;
