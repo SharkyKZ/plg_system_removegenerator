@@ -4,8 +4,6 @@ define('PATH_ROOT', str_replace('\\', '/', dirname(__DIR__)));
 
 final class PluginBuildScript
 {
-	private const VERSION = '1.2.0';
-
 	private const PLUGIN_ELEMENT = 'removegenerator';
 	private const PLUGIN_TYPE = 'system';
 
@@ -22,19 +20,23 @@ final class PluginBuildScript
 	private string $pluginName;
 	private string $repositoryUrl;
 	private string $zipFile;
+	private string $version;
 
 	public function __construct()
 	{
 		$this->pluginDirectory = PATH_ROOT . '/code/plugins/' . self::PLUGIN_TYPE . '/' . self::PLUGIN_ELEMENT;
+
+		$xml = simplexml_load_file($this->pluginDirectory . '/' . self::PLUGIN_ELEMENT . '.xml');
+		$this->version = (string) $xml->version;
+
 		$this->pluginName = 'plg_' . self::PLUGIN_TYPE . '_' . self::PLUGIN_ELEMENT;
 		$this->repositoryUrl = 'https://github.com/SharkyKZ/' . $this->pluginName;
-		$this->zipFile = __DIR__ . '/zips/' . $this->pluginName . '-' . self::VERSION . '.zip';
+		$this->zipFile = __DIR__ . '/zips/' . $this->pluginName . '-' . $this->version . '.zip';
 	}
 
 	public function build(): void
 	{
 		$this->buildZip();
-		$this->updateManifestXml();
 		$this->updateUpdateXml();
 		$this->updateChangelogXml();
 	}
@@ -65,25 +67,21 @@ final class PluginBuildScript
 		$zip->close();
 	}
 
-	private function updateManifestXml(): void
-	{
-		$manifestFile = $this->pluginDirectory . '/' . self::PLUGIN_ELEMENT . '.xml';
-		$manifest = file_get_contents($manifestFile);
-		$manifest = preg_replace('#<version>(.*)</version>#', '<version>' . self::VERSION . '</version>', $manifest);
-		file_put_contents($manifestFile, $manifest);
-	}
-
 	private function updateUpdateXml(): void
 	{
 		$manifestFile = PATH_ROOT . '/updates/updates.xml';
 		$xml = simplexml_load_file($manifestFile);
+		$children = $xml->children();
+		$counter = 0;
 
-		foreach ($xml->children() as $update)
+		foreach ($children as $update)
 		{
-			if ((string) $update->version === self::VERSION)
+			if ((string) $update->version === $this->version)
 			{
-				return;
+				unset($children[$counter]);
 			}
+
+			$counter++;
 		}
 
 		//  Static values.
@@ -98,9 +96,9 @@ final class PluginBuildScript
 		$update->addChild('maintainerurl', $this->repositoryUrl);
 
 		// Dynamic values.
-		$update->addChild('version', self::VERSION);
+		$update->addChild('version', $this->version);
 		$node = $update->addChild('downloads');
-		$node = $node->addChild('downloadurl', $this->repositoryUrl . '/releases/download/' . self::VERSION . '/' . basename($this->zipFile));
+		$node = $node->addChild('downloadurl', $this->repositoryUrl . '/releases/download/' . $this->version . '/' . basename($this->zipFile));
 		$node->addAttribute('type', 'full');
 		$node->addAttribute('format', 'zip');
 
@@ -109,7 +107,7 @@ final class PluginBuildScript
 			$update->addChild($algo, hash_file($algo, $this->zipFile));
 		}
 
-		$node = $update->addChild('infourl', $this->repositoryUrl . '/releases/tag/' . self::VERSION);
+		$node = $update->addChild('infourl', $this->repositoryUrl . '/releases/tag/' . $this->version);
 		$node->addAttribute('title', self::UPDATE_NAME);
 		$update->addChild('changelogurl', 'https://raw.githubusercontent.com/SharkyKZ/' . $this->pluginName . '/master/updates/changelog.xml');
 
@@ -129,7 +127,7 @@ final class PluginBuildScript
 
 		foreach ($xml->children() as $update)
 		{
-			if ((string) $update->version === self::VERSION)
+			if ((string) $update->version === $this->version)
 			{
 				return;
 			}
@@ -138,7 +136,7 @@ final class PluginBuildScript
 		$changelog = $xml->addChild('changelog');
 		$changelog->addChild('element', self::PLUGIN_ELEMENT);
 		$changelog->addChild('type', 'plugin');
-		$changelog->addChild('version', self::VERSION);
+		$changelog->addChild('version', $this->version);
 
 		file_put_contents($manifestFile, $this->formatXml($xml->asXml()));
 	}
