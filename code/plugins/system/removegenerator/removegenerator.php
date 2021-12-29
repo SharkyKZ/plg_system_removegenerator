@@ -71,7 +71,18 @@ class PlgSystemRemoveGenerator extends CMSPlugin
 			return;
 		}
 
-		$doc->setGenerator('');
+		/**
+		 * updated: @RussW - 29-dec-2021
+		 * added the option to add a custom generator tag, instead of simply removing it
+		 */
+		if (!$this->params->get('removeGenerator', true))
+		{
+			$doc->setGenerator(''.$this->params->get('customGenerator').'');
+		}
+		else
+		{
+			$doc->setGenerator('');
+		}
 	}
 
 	/**
