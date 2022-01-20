@@ -39,6 +39,20 @@
 					<option value="0">JNO</option>
 					<option value="1">JYES</option>
 				</field>
+				<field
+					name="removeApiHeader"
+					type="radio"
+					label="PLG_SYSTEM_REMOVEGENERATOR_CONFIG_REMOVE_API_HEADER_LABEL"
+					description="PLG_SYSTEM_REMOVEGENERATOR_CONFIG_REMOVE_API_HEADER_DESCRIPTION"
+					class="btn-group btn-group-yesno"
+					default="1"
+					filter="uint"
+					validate="options"
+					required="true"
+					>
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
 			</fieldset>
 		</fields>
 	</config>

@@ -62,6 +62,33 @@ class PlgSystemRemoveGenerator extends CMSPlugin
 	}
 
 	/**
+	 * Registers callback for removing X-Powered-By header.
+	 *
+	 * @return  void
+	 *
+	 * @since   1.3.0
+	 */
+	public function onAfterInitialise()
+	{
+		if (!$this->app->isClient('api'))
+		{
+			return;
+		}
+
+		if (!$this->params->get('removeApiHeader', true))
+		{
+			return;
+		}
+
+		header_register_callback(
+			static function()
+			{
+				header_remove('X-Powered-By');
+			}
+		);
+	}
+
+	/**
 	 * Sets generator value.
 	 *
 	 * @return  void
