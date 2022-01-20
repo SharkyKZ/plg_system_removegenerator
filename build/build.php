@@ -9,8 +9,8 @@ final class PluginBuildScript
 
 	private const JOOMLA_MINIMUM = '3.8';
 	private const JOOMLA_UNSUPPORTED = '5.0';
-	private const PHP_MINIMUM = '5.3.10';
-	private const PHP_UNSUPPORTED = '8.1';
+	private const PHP_MINIMUM = '5.4';
+	private const PHP_UNSUPPORTED = '8.2';
 
 	private const UPDATE_JOOMLA_REGEX = '(4|3\.([89]|10))';
 	private const UPDATE_NAME = 'System - Remove Generator';

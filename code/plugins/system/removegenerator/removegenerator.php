@@ -114,7 +114,7 @@ class PlgSystemRemoveGenerator extends CMSPlugin
 		// Generator is not escaped on feed pages.
 		if ($doc instanceof FeedDocument)
 		{
-			$doc->setGenerator(htmlspecialchars($this->generator, ENT_QUOTES, 'UTF-8'));
+			$doc->setGenerator(htmlspecialchars($this->generator, ENT_XML1|ENT_QUOTES, 'UTF-8'));
 		}
 	}
 

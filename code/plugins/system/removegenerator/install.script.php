@@ -36,7 +36,7 @@ final class PlgSystemRemoveGeneratorInstallerScript
 	 * @var    string
 	 * @since  1.2.0
 	 */
-	private $phpMinimum = '5.3.10';
+	private $phpMinimum = '5.4';
 
 	/**
 	 * Next unsupported PHP version.
@@ -44,7 +44,7 @@ final class PlgSystemRemoveGeneratorInstallerScript
 	 * @var    string
 	 * @since  1.2.0
 	 */
-	private $phpUnsupported = '8.1';
+	private $phpUnsupported = '8.2';
 
 	/**
 	 * Function called before extension installation/update/removal procedure commences.
