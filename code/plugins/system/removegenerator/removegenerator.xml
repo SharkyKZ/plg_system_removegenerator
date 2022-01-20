@@ -5,7 +5,7 @@
 	<creationDate>2021-08-24</creationDate>
 	<copyright>(C) 2021 SharkyKZ</copyright>
 	<license>GPL-2.0-or-later</license>
-	<version>1.2.1</version>
+	<version>1.3.0</version>
 	<description>PLG_SYSTEM_REMOVEGENERATOR_XML_DESCRIPTION</description>
 	<files>
 		<filename plugin="removegenerator">removegenerator.php</filename>
