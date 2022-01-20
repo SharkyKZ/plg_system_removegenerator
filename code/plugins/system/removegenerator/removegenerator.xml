@@ -20,37 +20,17 @@
 		<fields name="params">
 			<fieldset name="basic">
 				<field
-					name="removeGenerator"
-					type="radio"
-					layout="joomla.form.field.radio.switcher"
-					label="PLG_SYSTEM_REMOVEGENERATOR_CONFIG_REMOVE_GENERATOR_LABEL"
-					description="PLG_SYSTEM_REMOVEGENERATOR_CONFIG_REMOVE_GENERATOR_DESC"
-					default="0"
-					filter="integer"
-					validate="options"
-					required="true"
-				>
-					<option value="0">JNO</option>
-					<option value="1">JYES</option>
-				</field>
-
-				<field
 					name="customGenerator"
 					type="text"
 					label="PLG_SYSTEM_REMOVEGENERATOR_CONFIG_CUSTOM_GENERATOR_LABEL"
-					required="false"
 					filter="string"
-					size="50"
-					class="col-md-5"
-					showon="removeGenerator:0"
 				/>
-
 				<field
 					name="removeHeader"
 					type="radio"
-					layout="joomla.form.field.radio.switcher"
 					label="PLG_SYSTEM_REMOVEGENERATOR_CONFIG_REMOVE_HEADER_LABEL"
 					description="PLG_SYSTEM_REMOVEGENERATOR_CONFIG_REMOVE_HEADER_DESCRIPTION"
+					class="btn-group btn-group-yesno"
 					default="1"
 					filter="uint"
 					validate="options"
