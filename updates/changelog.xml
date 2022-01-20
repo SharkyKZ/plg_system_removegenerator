@@ -43,7 +43,7 @@
 		<type>plugin</type>
 		<version>1.3.0</version>
 		<addition>
-			<item>Added an option to set custom header</item>
+			<item>Added an option to set custom generator</item>
 			<item>Added an option to remove "X-Powered-By" header in API application (Joomla 4.0+)</item>
 		</addition>
 		<change>
