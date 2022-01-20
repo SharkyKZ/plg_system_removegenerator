@@ -34,6 +34,14 @@ class PlgSystemRemoveGenerator extends CMSPlugin
 	protected $appCheck;
 
 	/**
+	 * Custom generator string.
+	 *
+	 * @var    string
+	 * @since  1.3.0
+	 */
+	private $generator;
+
+	/**
 	 * Class constructor.
 	 *
 	 * @param   \Joomla\Event\DispatcherInterface  $subject  The object to observe.
@@ -48,10 +56,13 @@ class PlgSystemRemoveGenerator extends CMSPlugin
 		parent::__construct($subject, $config);
 
 		$this->appCheck = $this->app->isClient('site') || $this->app->isClient('administrator');
+
+		// Make sure generator is a string.
+		$this->generator = is_string($this->params->get('customGenerator')) ? $this->params->get('customGenerator') : '';
 	}
 
 	/**
-	 * Removes generator tag from HTML pages.
+	 * Sets generator value.
 	 *
 	 * @return  void
 	 *
@@ -66,22 +77,17 @@ class PlgSystemRemoveGenerator extends CMSPlugin
 
 		$doc = $this->app->getDocument();
 
-		if (!($doc instanceof HtmlDocument))
+		if ($doc instanceof HtmlDocument)
 		{
+			$doc->setGenerator($this->generator);
+
 			return;
 		}
 
-		/**
-		 * updated: @RussW - 29-dec-2021
-		 * added the option to add a custom generator tag, instead of simply removing it
-		 */
-		if (!$this->params->get('removeGenerator', true))
+		// Generator is not escaped on feed pages.
+		if ($doc instanceof FeedDocument)
 		{
-			$doc->setGenerator(''.$this->params->get('customGenerator').'');
-		}
-		else
-		{
-			$doc->setGenerator('');
+			$doc->setGenerator(htmlspecialchars($this->generator, ENT_QUOTES, 'UTF-8'));
 		}
 	}
 
@@ -94,6 +100,12 @@ class PlgSystemRemoveGenerator extends CMSPlugin
 	 */
 	public function onAfterRender()
 	{
+		// Don't remove tags if custom generator is set.
+		if ($this->generator !== '')
+		{
+			return;
+		}
+
 		if (!$this->appCheck)
 		{
 			return;
