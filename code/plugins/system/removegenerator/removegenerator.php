@@ -6,6 +6,7 @@
 
 defined('_JEXEC') or exit;
 
+use Joomla\CMS\Document\ErrorDocument;
 use Joomla\CMS\Document\FeedDocument;
 use Joomla\CMS\Document\HtmlDocument;
 use Joomla\CMS\Plugin\CMSPlugin;
@@ -115,6 +116,28 @@ class PlgSystemRemoveGenerator extends CMSPlugin
 		if ($doc instanceof FeedDocument)
 		{
 			$doc->setGenerator(htmlspecialchars($this->generator, ENT_XML1|ENT_QUOTES, 'UTF-8'));
+		}
+	}
+
+	/**
+	 * Sets generator value on error pages.
+	 *
+	 * @return  void
+	 *
+	 * @since   1.4.0
+	 */
+	public function onBeforeCompileHead()
+	{
+		if (!$this->appCheck)
+		{
+			return;
+		}
+
+		$doc = $this->app->getDocument();
+
+		if ($doc instanceof ErrorDocument)
+		{
+			$doc->setGenerator($this->generator);
 		}
 	}
 
