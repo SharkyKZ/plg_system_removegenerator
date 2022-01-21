@@ -95,4 +95,25 @@
 		<targetplatform name="joomla" version="(4|3\.([89]|10))"/>
 		<php_minimum>5.4</php_minimum>
 	</update>
+	<update>
+		<name>System - Remove Generator</name>
+		<description>Plugin for removing generator tag.</description>
+		<element>removegenerator</element>
+		<type>plugin</type>
+		<folder>system</folder>
+		<client>site</client>
+		<maintainer>SharkyKZ</maintainer>
+		<maintainerurl>https://github.com/SharkyKZ/plg_system_removegenerator</maintainerurl>
+		<version>1.4.0</version>
+		<downloads>
+			<downloadurl type="full" format="zip">https://github.com/SharkyKZ/plg_system_removegenerator/releases/download/1.4.0/plg_system_removegenerator-1.4.0.zip</downloadurl>
+		</downloads>
+		<sha512>1482b735065c3b56dae3c56e9d1042d847b8242df1a1826289ebb179adc49e1eafe0e2398c18e8cd6439af0700acd6efa75c7f3ead6e0f4e827057a289419696</sha512>
+		<sha384>9a77ae08d89fadfc45853451736445633a2fc831030baa4740413d0b81adb1e44a249a7d1a7957ab2dc60308644e5641</sha384>
+		<sha256>c31a0ae12c74d481b5cb5a2c956c018e7f4d7c33dd13d495d6003c5cbfc5e0b2</sha256>
+		<infourl title="System - Remove Generator">https://github.com/SharkyKZ/plg_system_removegenerator/releases/tag/1.4.0</infourl>
+		<changelogurl>https://raw.githubusercontent.com/SharkyKZ/plg_system_removegenerator/master/updates/changelog.xml</changelogurl>
+		<targetplatform name="joomla" version="(4|3\.([89]|10))"/>
+		<php_minimum>5.4</php_minimum>
+	</update>
 </updates>

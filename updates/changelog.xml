@@ -51,4 +51,12 @@
 			<item>Declared PHP 8.1 support</item>
 		</change>
 	</changelog>
+	<changelog>
+		<element>removegenerator</element>
+		<type>plugin</type>
+		<version>1.4.0</version>
+		<addition>
+			<item>Generator is now removed on error pages too (Joomla 4.0+)</item>
+		</addition>
+	</changelog>
 </changelogs>
