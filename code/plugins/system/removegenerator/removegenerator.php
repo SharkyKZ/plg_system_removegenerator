@@ -4,7 +4,7 @@
  * @license     GPL-2.0-or-later
  */
 
-defined('_JEXEC') or exit;
+defined('_JEXEC') || exit;
 
 use Joomla\CMS\Document\ErrorDocument;
 use Joomla\CMS\Document\FeedDocument;
@@ -52,7 +52,7 @@ class PlgSystemRemoveGenerator extends CMSPlugin
 	 *
 	 * @since   1.0.0
 	 */
-	public function __construct(&$subject, array $config = array())
+	public function __construct($subject, array $config = [])
 	{
 		parent::__construct($subject, $config);
 
@@ -168,10 +168,10 @@ class PlgSystemRemoveGenerator extends CMSPlugin
 			return;
 		}
 
-		$patterns = array(
+		$patterns = [
 			'/<generator.*?<\/generator>\n/',
 			'/<!-- generator=".*?" -->\n/',
-		);
+		];
 		$body = preg_replace($patterns, '', $this->app->getBody());
 
 		$this->app->setBody($body);
