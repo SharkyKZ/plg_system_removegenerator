@@ -59,4 +59,12 @@
 			<item>Generator is now removed on error pages too (Joomla 4.0+)</item>
 		</addition>
 	</changelog>
+	<changelog>
+		<element>removegenerator</element>
+		<type>plugin</type>
+		<version>1.4.1</version>
+		<change>
+			<item>Declared PHP 8.2 support</item>
+		</change>
+	</changelog>
 </changelogs>
