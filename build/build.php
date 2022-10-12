@@ -12,11 +12,13 @@ final class PluginBuildScript
 	private const PHP_MINIMUM = '5.4';
 	private const PHP_UNSUPPORTED = '8.3';
 
-	private const UPDATE_JOOMLA_REGEX = '(4|3\.([89]|10))';
+	private const UPDATE_JOOMLA_REGEX = '(4\.|3\.([89]|10))';
 	private const UPDATE_NAME = 'System - Remove Generator';
 	private const UPDATE_DESCRIPTION = 'Plugin for removing generator tag.';
+	private const REPOSITORY_NAME = 'plg_system_removegenerator';
 
 	private string $pluginDirectory;
+	private string $mediaDirectory;
 	private string $pluginName;
 	private string $repositoryUrl;
 	private string $zipFile;
@@ -24,13 +26,15 @@ final class PluginBuildScript
 
 	public function __construct()
 	{
+		$this->pluginName = 'plg_' . self::PLUGIN_TYPE . '_' . self::PLUGIN_ELEMENT;
+
 		$this->pluginDirectory = PATH_ROOT . '/code/plugins/' . self::PLUGIN_TYPE . '/' . self::PLUGIN_ELEMENT;
+		$this->mediaDirectory = PATH_ROOT . '/code/media/' . $this->pluginName;
 
 		$xml = simplexml_load_file($this->pluginDirectory . '/' . self::PLUGIN_ELEMENT . '.xml');
 		$this->version = (string) $xml->version;
 
-		$this->pluginName = 'plg_' . self::PLUGIN_TYPE . '_' . self::PLUGIN_ELEMENT;
-		$this->repositoryUrl = 'https://github.com/SharkyKZ/' . $this->pluginName;
+		$this->repositoryUrl = 'https://github.com/SharkyKZ/' . self::REPOSITORY_NAME;
 		$this->zipFile = __DIR__ . '/zips/' . $this->pluginName . '-' . $this->version . '.zip';
 	}
 
@@ -43,13 +47,14 @@ final class PluginBuildScript
 
 	private function buildZip(): void
 	{
-		if(!is_dir(__DIR__ . '/zips'))
+		if (!is_dir(__DIR__ . '/zips'))
 		{
 			mkdir(__DIR__ . '/zips', 0755);
 		}
 
 		$zip = new ZipArchive;
-		$zip->open($this->zipFile, ZipArchive::CREATE);
+		$zip->open($this->zipFile, ZipArchive::OVERWRITE|ZipArchive::CREATE);
+
 		$iterator = new RecursiveDirectoryIterator($this->pluginDirectory);
 		$iterator2 = new RecursiveIteratorIterator($iterator);
 
@@ -64,6 +69,24 @@ final class PluginBuildScript
 			}
 		}
 
+		if (is_dir($this->mediaDirectory))
+		{
+			$iterator = new RecursiveDirectoryIterator($this->mediaDirectory);
+			$iterator2 = new RecursiveIteratorIterator($iterator);
+
+			foreach ($iterator2 as $file)
+			{
+				if ($file->isFile())
+				{
+					$zip->addFile(
+						$file->getPathName(),
+						str_replace(['\\', $this->mediaDirectory . '/'], ['/', 'media/'], $file->getPathName())
+					);
+				}
+			}
+		}
+
+		$zip->addFile(PATH_ROOT . '/LICENSE', 'LICENSE');
 		$zip->close();
 	}
 
@@ -71,17 +94,17 @@ final class PluginBuildScript
 	{
 		$manifestFile = PATH_ROOT . '/updates/updates.xml';
 		$xml = simplexml_load_file($manifestFile);
-		$children = $xml->children();
-		$counter = 0;
+		$children = $xml->xpath('update');
 
-		foreach ($children as $update)
+		foreach ($children as $key => $update)
 		{
-			if ((string) $update->version === $this->version)
+			if (
+				(string) $update->version === $this->version
+				|| ((string) $update->targetplatform->attributes()['version'] === self::UPDATE_JOOMLA_REGEX && (string) $update->php_minimum === self::PHP_MINIMUM)
+			)
 			{
-				unset($children[$counter]);
+				unset($update[0]);
 			}
-
-			$counter++;
 		}
 
 		//  Static values.
@@ -109,7 +132,7 @@ final class PluginBuildScript
 
 		$node = $update->addChild('infourl', $this->repositoryUrl . '/releases/tag/' . $this->version);
 		$node->addAttribute('title', self::UPDATE_NAME);
-		$update->addChild('changelogurl', 'https://raw.githubusercontent.com/SharkyKZ/' . $this->pluginName . '/master/updates/changelog.xml');
+		$update->addChild('changelogurl', 'https://raw.githubusercontent.com/SharkyKZ/' . self::REPOSITORY_NAME . '/master/updates/changelog.xml');
 
 		// System requirements.
 		$node = $update->addChild('targetplatform');
@@ -154,3 +177,4 @@ final class PluginBuildScript
 }
 
 (new PluginBuildScript)->build();
+
