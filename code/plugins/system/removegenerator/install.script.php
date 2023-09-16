@@ -44,7 +44,7 @@ final class PlgSystemRemoveGeneratorInstallerScript
 	 * @var    string
 	 * @since  1.2.0
 	 */
-	private $phpUnsupported = '8.3';
+	private $phpUnsupported = '8.4';
 
 	/**
 	 * Function called before extension installation/update/removal procedure commences.
