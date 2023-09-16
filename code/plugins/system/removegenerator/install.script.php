@@ -28,7 +28,7 @@ final class PlgSystemRemoveGeneratorInstallerScript
 	 * @var    string
 	 * @since  1.2.0
 	 */
-	private $joomlaUnsupported = '5.0';
+	private $joomlaUnsupported = '6.0';
 
 	/**
 	 * Minimum supported PHP version.
