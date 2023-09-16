@@ -67,4 +67,13 @@
 			<item>Declared PHP 8.2 support</item>
 		</change>
 	</changelog>
+	<changelog>
+		<element>removegenerator</element>
+		<type>plugin</type>
+		<version>1.4.2</version>
+		<change>
+			<item>Declared PHP 8.3 support</item>
+			<item>Declared Joomla! 5.0 support</item>
+		</change>
+	</changelog>
 </changelogs>
