@@ -1,4 +1,4 @@
-Joomla! 4.x (and 3.x) plugin for removing generator tag. 
+Joomla! plugin for removing generator tag.
 
 ### Features
 - Removes generator tag from HTML, error and feed (Atom/RSS) pages.
@@ -8,5 +8,5 @@ Joomla! 4.x (and 3.x) plugin for removing generator tag.
 
 ### System Requirements
 
-- Joomla 3.8 or higher (4.x is supported).
-- PHP 5.4 or higher (8.1 is supported).
+- Joomla 3.8 or higher (5.x is supported).
+- PHP 5.4 or higher (8.3 is supported).
