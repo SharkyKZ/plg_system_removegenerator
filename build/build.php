@@ -12,7 +12,7 @@ require (dirname(__DIR__)) . '/build-script/script.php';
 		'SharkyKZ',
 		'System - Remove Generator',
 		'Plugin for removing generator tag.',
-		'(4\.|3\.([89]|10))',
+		'(5\.|4\.|3\.([89]|10))',
 		'5.4',
 	)
 )->build();
