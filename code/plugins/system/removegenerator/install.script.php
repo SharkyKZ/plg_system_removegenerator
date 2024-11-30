@@ -8,6 +8,7 @@ defined('_JEXEC') or exit;
 
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Log\Log;
+use Joomla\CMS\Version;
 
 /**
  * Plugin installer script.
@@ -44,7 +45,7 @@ final class PlgSystemRemoveGeneratorInstallerScript
 	 * @var    string
 	 * @since  1.2.0
 	 */
-	private $phpUnsupported = '8.4';
+	private $phpUnsupported = '8.5';
 
 	/**
 	 * Function called before extension installation/update/removal procedure commences.
@@ -68,7 +69,7 @@ final class PlgSystemRemoveGeneratorInstallerScript
 			return false;
 		}
 
-		if (version_compare(JVERSION, $this->joomlaUnsupported, '>='))
+		if (version_compare(JVERSION, $this->joomlaUnsupported, '>=')  && !(new Version)->isInDevelopmentState())
 		{
 			return false;
 		}
