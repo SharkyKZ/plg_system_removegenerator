@@ -15,7 +15,7 @@ require __DIR__ . '/vendor/autoload.php';
 		'SharkyKZ',
 		'System - Remove Generator',
 		'Plugin for removing generator tag.',
-		'(5\.|4\.|3\.([89]|10))',
+		'(6\.|5\.|4\.|3\.([89]|10))',
 		'5.4',
 		$argv[1] ?? null,
 	)

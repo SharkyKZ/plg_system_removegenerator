@@ -2,10 +2,10 @@
 <extension type="plugin" group="system" method="upgrade">
 	<name>plg_system_removegenerator</name>
 	<author>SharkyKZ</author>
-	<creationDate>2021-08-24</creationDate>
+	<creationDate>2025-10-28</creationDate>
 	<copyright>(C) 2021 SharkyKZ</copyright>
 	<license>GPL-2.0-or-later</license>
-	<version>1.4.3</version>
+	<version>1.4.4</version>
 	<description>PLG_SYSTEM_REMOVEGENERATOR_XML_DESCRIPTION</description>
 	<files>
 		<filename plugin="removegenerator">removegenerator.php</filename>

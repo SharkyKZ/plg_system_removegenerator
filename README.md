@@ -8,5 +8,5 @@ Joomla! plugin for removing generator tag.
 
 ### System Requirements
 
-- Joomla 3.8 or higher (5.x is supported)
-- PHP 5.4 or higher
+- Joomla 3.8 or higher (6.x is supported)
+- PHP 5.4 or higher (8.x is supported)
